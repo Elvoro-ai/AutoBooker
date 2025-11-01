@@ -129,6 +129,33 @@ const upcomingEvents = [
   }
 ]
 
+// Fonctions utilitaires
+function getStatusColor(status: string): string {
+  switch (status) {
+    case 'confirmed':
+      return 'bg-green-100 text-green-800'
+    case 'pending':
+      return 'bg-yellow-100 text-yellow-800'
+    case 'cancelled':
+      return 'bg-red-100 text-red-800'
+    default:
+      return 'bg-gray-100 text-gray-800'
+  }
+}
+
+function getStatusIcon(status: string) {
+  switch (status) {
+    case 'confirmed':
+      return <CheckCircle2 className="w-4 h-4" />
+    case 'pending':
+      return <AlertCircle className="w-4 h-4" />
+    case 'cancelled':
+      return <XCircle className="w-4 h-4" />
+    default:
+      return <Clock className="w-4 h-4" />
+  }
+}
+
 export default function DashboardPage() {
   const [selectedPeriod, setSelectedPeriod] = useState('7d')
   const [notifications] = useState(3)
@@ -138,32 +165,6 @@ export default function DashboardPage() {
     avatar: '👨‍💼',
     plan: 'Premium'
   })
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'confirmed':
-        return 'bg-green-100 text-green-800'
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800'
-      case 'cancelled':
-        return 'bg-red-100 text-red-800'
-      default:
-        return 'bg-gray-100 text-gray-800'
-    }
-  }
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'confirmed':
-        return <CheckCircle2 className="w-4 h-4" />
-      case 'pending':
-        return <AlertCircle className="w-4 h-4" />
-      case 'cancelled':
-        return <XCircle className="w-4 h-4" />
-      default:
-        return <Clock className="w-4 h-4" />
-    }
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -355,7 +356,7 @@ export default function DashboardPage() {
                 <h3 className="text-lg font-semibold text-gray-900">Planning Aujourd'hui</h3>
               </div>
               <div className="p-6 space-y-4">
-                {upcomingEvents.map((event, index) => (
+                {upcomingEvents.map((event) => (
                   <div key={event.id} className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50">
                     <div className="w-2 h-2 rounded-full bg-primary-500 mt-2"></div>
                     <div className="flex-1">
@@ -402,4 +403,31 @@ export default function DashboardPage() {
       </div>
     </div>
   )
+}
+
+// Fonctions utilitaires exportées
+function getStatusColor(status: string): string {
+  switch (status) {
+    case 'confirmed':
+      return 'bg-green-100 text-green-800'
+    case 'pending':
+      return 'bg-yellow-100 text-yellow-800'
+    case 'cancelled':
+      return 'bg-red-100 text-red-800'
+    default:
+      return 'bg-gray-100 text-gray-800'
+  }
+}
+
+function getStatusIcon(status: string) {
+  switch (status) {
+    case 'confirmed':
+      return <CheckCircle2 className="w-4 h-4" />
+    case 'pending':
+      return <AlertCircle className="w-4 h-4" />
+    case 'cancelled':
+      return <XCircle className="w-4 h-4" />
+    default:
+      return <Clock className="w-4 h-4" />
+  }
 }
